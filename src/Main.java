@@ -1,8 +1,7 @@
 import manager.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicInteger;
+import tasks.Epic;
+import tasks.Subtask;
+import tasks.Task;
 
 public class Main {
 
@@ -35,15 +34,11 @@ public class Main {
         Subtask updSubtask4 = new Subtask(4,"Подзадача 1", "Повторить теорию.", Status.IN_PROGRESS, 3);
         taskManager.updateSubtask(updSubtask4);
         System.out.println(taskManager.findEpicById(3));
-        System.out.println(taskManager.chekStatus(3));
         Epic updEpic1 = new Epic(3,"Эпик 1", "Закрыть хвосты.", Status.DONE);
         taskManager.updateEpic(updEpic1);
         System.out.println(taskManager.findEpicById(3));
-        System.out.println(taskManager.chekStatus(3));
         taskManager.deleteSubtaskById(4);
-        System.out.println(taskManager.chekStatus(3));
         taskManager.deleteSubtaskById(5);
-        System.out.println(taskManager.chekStatus(3));
         taskManager.deleteEpicById(3);
         System.out.println(taskManager.findSubtaskById(4));
         taskManager.deleteAllTasks();

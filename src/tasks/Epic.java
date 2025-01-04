@@ -1,4 +1,6 @@
-package manager;
+package tasks;
+import manager.Status;
+
 import java.util.ArrayList;
 
 public class Epic extends Task {

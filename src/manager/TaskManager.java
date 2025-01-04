@@ -1,4 +1,8 @@
 package manager;
+import tasks.Epic;
+import tasks.Subtask;
+import tasks.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,10 +11,6 @@ public class TaskManager {
     private final HashMap<Integer, Epic> epics = new HashMap<>();
     private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
     private int counter = 1;
-
-    private int nextId() {
-        return counter++;
-    }
 
     public Task createTask(Task task) {
         int id = nextId();
@@ -29,12 +29,13 @@ public class TaskManager {
     }
 
     public Subtask createSubtask(Subtask subtask) {
-        if(epics.containsKey(subtask.getEpicId())) {
+        if (epics.containsKey(subtask.getEpicId())) {
             int id = nextId();
             subtask.setId(id);
             Subtask newSubtask = new Subtask(subtask.getId(), subtask.getName(), subtask.getDescription(), subtask.getStatus(), subtask.getEpicId());
             subtasks.put(newSubtask.getId(), newSubtask);
-            epics.get(subtasks.get(id).getEpicId()).getSubtaskIds().add(id);
+            epics.get(subtask.getEpicId()).getSubtaskIds().add(id);
+            epics.get(subtask.getEpicId()).setStatus(chekStatus(subtask.getEpicId()));
             return subtask;
         } else {
             return null;
@@ -103,7 +104,37 @@ public class TaskManager {
         return subtask;
         }
 
-    public Status chekStatus(Integer id) {
+    public Task updateTask(Task task) {
+        if (tasks.containsKey(task.getId())) {
+            tasks.put(task.getId(), task);
+            return task;
+        } else {
+            return null;
+        }
+    }
+
+    public Epic updateEpic(Epic epic) {
+        if (epics.containsKey(epic.getId())) {
+            epics.get(epic.getId()).setName(epic.getName());
+            epics.get(epic.getId()).setDescription(epic.getDescription());
+            return epic;
+        } else return null;
+    }
+
+    public Subtask updateSubtask(Subtask subtask) {
+        if (subtasks.containsKey(subtask.getId())) {
+        int epicId = subtask.getEpicId();
+        subtasks.put(subtask.getId(), subtask);
+        epics.get(epicId).setStatus(chekStatus(epicId));
+        return subtask;
+    } else return null;
+    }
+
+    private int nextId() {
+        return counter++;
+    }
+
+    private Status chekStatus(Integer id) {
         int numberNew = 0;
         int numberDone = 0;
         int numberInProgress = 0;
@@ -129,30 +160,5 @@ public class TaskManager {
             status = Status.IN_PROGRESS;
         }
         return status;
-    }
-
-    public Task updateTask(Task task) {
-        tasks.remove(task.getId());
-        tasks.put(task.getId(), task);
-        return task;
-    }
-
-    public Epic updateEpic(Epic epic) {
-        if(epics.containsKey(epic.getId())) {
-            epics.get(epic.getId()).setName(epic.getName());
-            epics.get(epic.getId()).setDescription(epic.getDescription());
-            epics.get(epic.getId()).setStatus(chekStatus(epic.getId()));
-            return epic;
-        } else return null;
-    }
-
-    public Subtask updateSubtask(Subtask subtask) {
-        if(subtasks.containsKey(subtask.getId())) {
-        int epicId = subtask.getEpicId();
-        subtasks.remove(subtask.getId());
-        subtasks.put(subtask.getId(), subtask);
-        epics.get(epicId).setStatus(chekStatus(epicId));
-        return subtask;
-    } else return null;
     }
 }

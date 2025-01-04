@@ -1,4 +1,6 @@
-package manager;
+package tasks;
+
+import manager.Status;
 
 public class Task {
     private Integer id;
