@@ -1,4 +1,6 @@
-package tasks;
+package app.tasks;
+
+import app.enumeration.Status;
 
 import java.util.ArrayList;
 
@@ -7,6 +9,11 @@ public class Epic extends Task {
 
     public Epic(Integer id, String name, String description, Status status) {
         super(id, name, description, status);
+        subtaskIds = new ArrayList<>();
+    }
+
+    public Epic(String name, String description) {
+        super(name, description);
         subtaskIds = new ArrayList<>();
     }
 

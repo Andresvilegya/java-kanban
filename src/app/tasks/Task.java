@@ -1,4 +1,6 @@
-package tasks;
+package app.tasks;
+
+import app.enumeration.Status;
 
 public class Task {
     private Integer id;
@@ -11,6 +13,11 @@ public class Task {
         this.name = name;
         this.description = description;
         this.status = status;
+    }
+
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     @Override // переопределяем toString
