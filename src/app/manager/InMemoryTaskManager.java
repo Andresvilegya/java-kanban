@@ -1,5 +1,5 @@
 package app.manager;
-import app.HistoryManager.HistoryManager;
+import app.historyManager.HistoryManager;
 import app.tasks.Epic;
 import app.enumeration.Status;
 import app.tasks.Subtask;
@@ -8,11 +8,12 @@ import app.tasks.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
-    private final HashMap<Integer, Task> tasks = new HashMap<>();
-    private final HashMap<Integer, Epic> epics = new HashMap<>();
-    private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
+    private final Map<Integer, Task> tasks = new HashMap<>();
+    private final Map<Integer, Epic> epics = new HashMap<>();
+    private final Map<Integer, Subtask> subtasks = new HashMap<>();
     private int counter = 1;
     private HistoryManager historyManager;
 
@@ -201,6 +202,7 @@ public class InMemoryTaskManager implements TaskManager {
         return status;
     }
 
+    @Override
     public List<Task> getHistory() {
         return new ArrayList<>(historyManager.getHistory());
     }

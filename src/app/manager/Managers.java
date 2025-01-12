@@ -1,9 +1,12 @@
 package app.manager;
 
-import app.HistoryManager.HistoryManager;
-import app.HistoryManager.InMemoryHistoryManager;
+import app.historyManager.HistoryManager;
+import app.historyManager.InMemoryHistoryManager;
 
 public class Managers {
+
+    private Managers() {
+    }
 
     public static TaskManager getDefault() {
         HistoryManager historyManager = getDefaultHistory();
@@ -11,7 +14,8 @@ public class Managers {
     }
 
     public static InMemoryHistoryManager getDefaultHistory() {
-        return new InMemoryHistoryManager();
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        return inMemoryHistoryManager;
     }
 
 }

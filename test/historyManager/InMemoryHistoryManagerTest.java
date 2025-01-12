@@ -1,11 +1,9 @@
-package HistoryManager;
+package historyManager;
 
 import app.manager.Managers;
 import app.manager.TaskManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryHistoryManagerTest {
     private TaskManager taskManager;

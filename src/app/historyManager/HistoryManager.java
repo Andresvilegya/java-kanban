@@ -1,4 +1,4 @@
-package app.HistoryManager;
+package app.historyManager;
 
 import app.tasks.Task;
 import java.util.List;

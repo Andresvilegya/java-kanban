@@ -3,9 +3,10 @@ package app.tasks;
 import app.enumeration.Status;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Epic extends Task {
-    private ArrayList<Integer> subtaskIds;
+    private List<Integer> subtaskIds;
 
     public Epic(Integer id, String name, String description, Status status) {
         super(id, name, description, status);
@@ -17,7 +18,7 @@ public class Epic extends Task {
         subtaskIds = new ArrayList<>();
     }
 
-    public ArrayList<Integer> getSubtaskIds() {
+    public List<Integer> getSubtaskIds() {
         return subtaskIds;
     }
 
